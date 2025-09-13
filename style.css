@@ -1,0 +1,209 @@
+body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0c1d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 1rem;
+        }
+
+        .player-card {
+            background-color: #1c1a2e;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+            max-width: 400px;
+            width: 100%;
+            padding: 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s ease-in-out;
+        }
+
+        .player-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(66, 165, 245, 0.15), rgba(0, 0, 0, 0) 70%),
+                        radial-gradient(circle at top right, rgba(233, 30, 99, 0.15), rgba(0, 0, 0, 0) 60%);
+            animation: cardGlow 15s infinite linear;
+            z-index: 0;
+            opacity: 0.8;
+        }
+        
+        .player-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        @keyframes cardGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .album-art-container {
+            width: 100%;
+            padding-top: 100%;
+            position: relative;
+            margin-bottom: 1rem;
+            z-index: 1;
+        }
+
+        .album-art {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .album-art.playing {
+            border-radius: 50%;
+            animation: rotate 15s linear infinite;
+            box-shadow: 0 0 20px #42a5f5, 0 0 40px #e91e63;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .progress-container, .volume-container {
+            width: 100%;
+            height: 8px;
+            background-color: #3d3b51;
+            border-radius: 9999px;
+            cursor: pointer;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .progress-bar, .volume-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #42a5f5, #e91e63);
+            transition: width 0.1s linear;
+            border-radius: 9999px;
+        }
+
+        .control-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: #e91e63;
+            transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+            z-index: 1;
+        }
+        .control-btn:hover {
+            color: #42a5f5;
+            transform: scale(1.1);
+        }
+        
+        #play-btn {
+            color: #e91e63;
+            transition: transform 0.2s ease-in-out;
+        }
+        #play-btn:hover {
+            transform: scale(1.15);
+        }
+
+        .playlist-container {
+            width: 100%;
+            max-height: 250px;
+            overflow-y: auto;
+            border-top: 1px solid #3d3b51;
+            padding-top: 1rem;
+            text-align: left;
+            z-index: 1;
+        }
+        .playlist-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 0.5rem;
+            cursor: pointer;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s, transform 0.2s;
+            position: relative;
+        }
+        .playlist-item:hover {
+            background-color: #2d2b40;
+            transform: translateX(5px);
+        }
+        
+        .playlist-item.active {
+            background-color: #3d3b51;
+            font-weight: 600;
+        }
+        
+        .playlist-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 60%;
+            background-color: #42a5f5;
+            border-radius: 9999px;
+            animation: pulse 1s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            from { transform: scaleY(0.5) translateY(-50%); opacity: 0.5; }
+            to { transform: scaleY(1) translateY(-50%); opacity: 1; }
+        }
+
+        .playlist-info {
+            flex-grow: 1;
+            margin-left: 1rem;
+        }
+        .playlist-info h4 {
+            font-size: 1rem;
+            color: #ffffff;
+        }
+        .playlist-info p {
+            font-size: 0.875rem;
+            color: #a09fb2;
+        }
+
+        .playlist-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .playlist-container::-webkit-scrollbar-track {
+            background: #1c1a2e;
+        }
+        .playlist-container::-webkit-scrollbar-thumb {
+            background-color: #3d3b51;
+            border-radius: 20px;
+            border: 2px solid #1c1a2e;
+        }
+
+        .favorite-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            color: #a09fb2;
+            transition: color 0.2s ease-in-out;
+            margin-left: auto;
+        }
+        .favorite-btn.is-favorite {
+            color: #e91e63;
+        }
+        .favorite-btn:hover {
+            color: #fff;
+        }
