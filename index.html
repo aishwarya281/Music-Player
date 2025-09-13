@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Music Player</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="player-card">
+        <!-- Album Art -->
+        <div class="album-art-container">
+            <img id="album-art" class="album-art" src="https://placehold.co/400x400/9ca3af/ffffff?text=Album+Art" alt="Album Art">
+        </div>
+
+        <!-- Song Info -->
+        <div class="text-center z-10">
+            <h2 id="song-title" class="text-2xl font-bold text-white">Song Title</h2>
+            <p id="artist-name" class="text-gray-400">Artist Name</p>
+        </div>
+
+        <!-- Progress Bar and Time -->
+        <div class="w-full z-10">
+            <div id="progress-container" class="progress-container mb-2">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+            <div class="flex justify-between text-xs text-gray-400">
+                <span id="current-time">0:00</span>
+                <span id="duration-time">0:00</span>
+            </div>
+        </div>
+
+        <!-- Player Controls -->
+        <div class="flex items-center justify-center gap-6 z-10">
+            <button id="prev-btn" class="control-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-skip-back"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" x2="5" y1="19" y2="5"/></svg>
+            </button>
+            <button id="play-btn" class="control-btn">
+                <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pause" style="display: none;"><rect width="6" height="16" x="4" y="4"/><rect width="6" height="16" x="14" y="4"/></svg>
+            </button>
+            <button id="next-btn" class="control-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-skip-forward"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" x2="19" y1="5" y2="19"/></svg>
+            </button>
+        </div>
+        
+        <!-- Volume Control -->
+        <div class="flex items-center gap-2 w-full z-10">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-volume-2 text-gray-400"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            <div id="volume-container" class="volume-container">
+                <div id="volume-bar" class="volume-bar" style="width: 100%;"></div>
+            </div>
+        </div>
+
+        <!-- Playlist Section -->
+        <div class="playlist-container">
+            <div class="flex justify-between items-center mb-2">
+                <h3 class="text-lg font-bold text-white">Playlist</h3>
+                <div class="flex gap-2">
+                    <button id="all-songs-btn" class="px-3 py-1 text-sm rounded-full text-white bg-transparent border border-gray-600 hover:bg-gray-700 transition">All Songs</button>
+                    <button id="favorites-btn" class="px-3 py-1 text-sm rounded-full text-white bg-transparent border border-gray-600 hover:bg-gray-700 transition">Favorites</button>
+                </div>
+            </div>
+            <ul id="playlist">
+                <!-- Playlist items will be injected here by JavaScript -->
+            </ul>
+        </div>
+
+        <!-- Audio Element -->
+        <audio id="audio-element" src=""></audio>
+    </div>
+
+
+    <script src="script.js"></script>
+    </body>
+</html>
